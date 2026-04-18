@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=7, initial-scale=1.0">
     <script src="/public/js/sessao.js"></script>
     <title>Login</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
+
 <body>
-    
+    <header>
+
+        <div id="logo">
+            <a href="./telahome.html">
+                <img src="./assets/imagens/Logo.svg" alt="">
+            </a>
+            <h2>SondMind</h2>
+        </div>
+
+    </header>
+
+    <section id="Login">
+        <div id="conteiner_informacoes">
+
+            <div id="texto_login">
+                <h2>Login</h2><br>
+                <p>Sua mente tem um ritmo. Preparado para o dessafio?</p><br>
+            </div>
+
+            <input type="text" placeholder="Username"><br><br>
+            <input type="text" placeholder="Password"><br><br>
+
+            <button onclick="entrar()"><b>Login</button>
+
+        </div>
+        <div id="conteiner_imagem_login">
+
+            <img src="./assets/imagens/imagem_login.png" alt="">
+        </div>
+
+    </section>
+
 </body>
+
 </html>
 
 <script>

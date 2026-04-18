@@ -22,23 +22,24 @@ header {
 
 header img {
     width: 100%;
-    height: 18dvh;
+    height: 12dvh;
 }
 
 #logo a {
     padding: 0;
     margin: 0;
-    width: 20%;
+    width: 10%;
 
 }
 
 #logo {
-    width: 90%;
+    width: 50%;
     height: 10%;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 10px;
+    gap: 10px;
 
 }
 
@@ -373,16 +374,23 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
+        gap: 5dvh;
 
 
 
 }
 
+#footer_titulo img a {
+    padding: 0;
+    margin: 0;
+    width: 10%;
 
+}
 
 footer img {
-    width: 10%;
-    height: 10%;
+    width: 100%;
+    height: 12dvh;
+    margin-left: 20px;
 }
 
 #logos_footer {
