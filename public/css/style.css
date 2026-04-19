@@ -137,6 +137,11 @@ ul {
     border-radius: 20px;
 }
 
+#botao1_home a{
+
+    text-decoration: none;
+}
+
 #botao1_home:hover {
 
     color: black;
@@ -145,12 +150,18 @@ ul {
     transform: scale(1.05);
 }
 
+
 #botao2_home {
 
 
     width: 8dvw;
     height: 2dvw;
     border-radius: 20px;
+}
+
+#botao2_home a{
+
+    text-decoration: none;
 }
 
 #botao2_home:hover {
@@ -331,14 +342,9 @@ ul {
     height: 70dvh;
     display: flex;
     flex-direction: column;
-
     justify-content: center;
-
-
+    margin-top: 60px;
 }
-
-
-
 
 
 
@@ -355,15 +361,18 @@ ul {
 
 #sessao_sobre h3 {
 
-    font-size: 35px;
+    font-size: 25px;
+ 
 
 }
 
 #sessao_sobre p {
 
     width: 80%;
-    font-size: 25px;
+    font-size: 20px;
     color: #03030388;
+
+    
 }
 
 #footer_titulo {
@@ -374,7 +383,7 @@ ul {
     display: flex;
     flex-direction: row;
     align-items: center;
-        gap: 5dvh;
+    gap: 5dvh;
 
 
 
