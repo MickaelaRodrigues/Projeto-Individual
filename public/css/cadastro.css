@@ -10,8 +10,8 @@
 }
 
 #conteiner_informacoes_cadastro {
-    width: 50dvw;
-    height: 70dvh;
+    width: 60dvw;
+    height: 60dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +28,7 @@
 
 #texto_cadastro{
     width:70%;
-    font-size: 20px;
+    font-size: 18px;
     color: #03030369;
     
 }
@@ -38,7 +38,7 @@
     background-color: aliceblue;
     border-radius: 5px;
     width: 65%;
-    height: 30px;
+    height: 8%;
     padding-left: 5% ;
 }
 
@@ -61,7 +61,7 @@
 
 #conteiner_imagem_cadastro {
     width: 50dvw;
-    height: 70dvh;
+    height: 80dvh;
     display: flex;
     align-items: center;
     
