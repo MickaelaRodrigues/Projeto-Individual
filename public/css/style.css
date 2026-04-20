@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'inter', sans-serif;
 }
@@ -140,6 +144,18 @@ ul {
 #botao1_home a{
 
     text-decoration: none;
+    padding: 20px;
+    color: white;
+    
+    
+}
+
+
+#botao1_home a:hover{
+
+    color: black;
+    
+    
 }
 
 #botao1_home:hover {
@@ -162,11 +178,20 @@ ul {
 #botao2_home a{
 
     text-decoration: none;
+    padding: 20px;
+    color: black;
+
+}
+
+#botao2_home a:hover{
+
+    color: white;
+
 }
 
 #botao2_home:hover {
 
-    color: white;
+
     background-color: black;
     transition: 300ms;
     transform: scale(1.05);
