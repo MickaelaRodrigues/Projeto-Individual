@@ -11,11 +11,11 @@
 
 #conteiner_informacoes_cadastro {
     width: 60dvw;
-    height: 60dvh;
+    height: 70dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 0 3vw;
 
     
@@ -38,8 +38,15 @@
     background-color: aliceblue;
     border-radius: 5px;
     width: 65%;
-    height: 8%;
+    height: 15%;
     padding-left: 5% ;
+}
+
+#mensagem_erro{
+
+color: red;
+font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
 
 #conteiner_informacoes_cadastro button{
@@ -49,7 +56,7 @@
     font-size: 15px;
     color: white;
     width: 70%;
-    height: 8%;
+    height: 15%;
 
 }
 

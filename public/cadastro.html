@@ -30,12 +30,16 @@
         <p>"Pronto para testar seus ouvidos? Registre-se</p><br>
       </div>
 
-      <input type="text" placeholder="Insira seu nome"><br><br>
-      <input type="text" placeholder="Insira seu email"><br><br>
-      <input type="text" placeholder="Insira sua senha"><br><br>
-      <input type="text" placeholder="Confirme sua senha"><br><br>
+      <input id="nome_input" type="text" placeholder="Insira seu nome"><br><br>
+      <input id="email_input" type="text" placeholder="Insira seu email"><br><br>
+      <input id="senha_input" type="text" placeholder="Insira sua senha"><br><br>
+      <input id="confSenha_input" type="text" placeholder="Confirme sua senha"><br><br>
 
-      <button onclick="entrar()"><b>Cadastrar</button>
+      <div id="mensagem_erro"></div><br>
+
+      <button onclick="cadastrar()"><b>Cadastrar</button><br>
+
+      <a href="/public/login.html">Entre</a>
 
     </div>
     <div id="conteiner_imagem_cadastro">
@@ -52,127 +56,39 @@
 <script>
 
 
-  function entrar() {
-    aguardar();
-
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-
-    if (emailVar == "" || senhaVar == "") {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-      finalizarAguardar();
-      return false;
-    }
-    else {
-      setInterval(sumirMensagem, 5000)
-    }
-
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
-
-    fetch("/usuarios/autenticar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      })
-    }).then(function (resposta) {
-      console.log("ESTOU NO THEN DO entrar()!")
-
-      if (resposta.ok) {
-        console.log(resposta);
-
-        resposta.json().then(json => {
-          console.log(json);
-          console.log(JSON.stringify(json));
-          sessionStorage.EMAIL_USUARIO = json.email;
-          sessionStorage.NOME_USUARIO = json.nome;
-          sessionStorage.ID_USUARIO = json.id;
-          sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-          setTimeout(function () {
-            window.location = "./dashboard/cards.html";
-          }, 1000); // apenas para exibir o loading
-
-        });
-
-      } else {
-
-        console.log("Houve um erro ao tentar realizar o login!");
-
-        resposta.text().then(texto => {
-          console.error(texto);
-          finalizarAguardar(texto);
-        });
-      }
-
-    }).catch(function (erro) {
-      console.log(erro);
-    })
-
-    return false;
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none"
-  }
-
-</script>
-
-<script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
-
   function cadastrar() {
-    // aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
+
+    var nomeVar = nome_input.value
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var confSenhaVar = confSenha_input.value;
+    
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    if (nomeVar.trim() == "" || emailVar.trim() == "" || senhaVar.trim() == "" || confSenhaVar.trim() == "") {
+      
+      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
+    } else if (senhaVar.trim() != confSenhaVar.trim()) {
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+      mensagem_erro.innerHTML = `Senhas diferentes, verifique se as senhas são iguais`
+
+    } else if (!emailVar.includes(`@`) || !emailVar.includes(`.`)) {
+
+      mensagem_erro = `O email deve conter "@" ou "."`
+    } else if (nomeVar.lenght < 3) {
+
+      mensagem_erro = `Nome inválido, o nome deve ter no minimo 3 caracteres`
+    } else if (senhaVar.lenght < 6) {
+
+      mensagem_erro = `A senha deve conter no minimo 6 caracteres`
+    } else{
+
+
+
+      
+    fetch("http://localhost:3333/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -182,58 +98,32 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        senhaServer: senhaVar
+        
       }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+      
+      if (resposta.ok) {
+        mensagem_erro.style.color = "green";
+        mensagem_erro.innerHTML =
+        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
-    return false;
+    }
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 </script>
