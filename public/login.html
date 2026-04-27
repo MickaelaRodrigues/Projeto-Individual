@@ -14,7 +14,7 @@
     <header>
 
         <div id="logo">
-            <a href="./telahome.html">
+            <a href="./index.html">
                 <img src="./assets/imagens/Logo.svg" alt="">
             </a>
             <h2>SondMind</h2>
@@ -30,15 +30,16 @@
                 <p>Sua mente tem um ritmo. Preparado para o dessafio?</p><br>
             </div>
 
-            <input type="text" placeholder="Email"><br><br>
-            <input type="text" placeholder="Senha"><br><br>
+            <input id="email_input" type="text" placeholder="Email"><br><br>
+            <input id="senha_input" type="text" placeholder="Senha"><br><br>
 
-            <button onclick="entrar()"><b>Login</button><br>
-                
-             
-           <a href="/public/cadastro.html">Cadastre-se</a>
-                
-            </div>
+            <div id="mensagem_erro"></div>
+
+            <button id="loginButton" onclick="entrar()"><b>Login</button><br>
+
+            <a href="/public/cadastro.html">Cadastre-se</a>
+
+        </div>
         <div id="conteiner_imagem_login">
 
             <img src="./assets/imagens/imagem_login.png" alt="">
@@ -54,72 +55,75 @@
 
 
     function entrar() {
-        aguardar();
+
+        loginButton.disabled = true
+
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
+            loginButton.disabled = false
+
+
         }
         else {
-            setInterval(sumirMensagem, 5000)
-        }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+            fetch("http://localhost:3333/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+
+
+                        setTimeout(function () {
+                            window.location = "./telahome.html";
+                        }, 1000);
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    loginButton.disabled = false
+
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        loginButton.disabled = false
+
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+                loginButton.disabled = false
+
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+            return false;
+        }
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
 
 </script>

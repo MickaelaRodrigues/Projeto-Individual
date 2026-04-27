@@ -14,7 +14,7 @@
   <header>
 
     <div id="logo">
-      <a href="./telahome.html">
+      <a href="./index.html">
         <img src="./assets/imagens/Logo.svg" alt="">
       </a>
       <h2>SondMind</h2>
@@ -37,7 +37,7 @@
 
       <div id="mensagem_erro"></div><br>
 
-      <button onclick="cadastrar()"><b>Cadastrar</button><br>
+      <button id="cadastroButton" onclick="cadastrar()"><b>Cadastrar</button><br>
 
       <a href="/public/login.html">Entre</a>
 
@@ -58,71 +58,87 @@
 
   function cadastrar() {
 
+    cadastroButton.disabled = true
+    
 
     var nomeVar = nome_input.value
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confSenhaVar = confSenha_input.value;
-    
 
 
     if (nomeVar.trim() == "" || emailVar.trim() == "" || senhaVar.trim() == "" || confSenhaVar.trim() == "") {
-      
+
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      cadastroButton.disabled = false
+
 
     } else if (senhaVar.trim() != confSenhaVar.trim()) {
 
       mensagem_erro.innerHTML = `Senhas diferentes, verifique se as senhas são iguais`
+      cadastroButton.disabled = false
 
     } else if (!emailVar.includes(`@`) || !emailVar.includes(`.`)) {
 
       mensagem_erro = `O email deve conter "@" ou "."`
+      cadastroButton.disabled = false
+
+
     } else if (nomeVar.lenght < 3) {
 
       mensagem_erro = `Nome inválido, o nome deve ter no minimo 3 caracteres`
+      cadastroButton.disabled = false
+
+
     } else if (senhaVar.lenght < 6) {
 
       mensagem_erro = `A senha deve conter no minimo 6 caracteres`
-    } else{
+      cadastroButton.disabled = false
 
 
+    } else {
 
-      
-    fetch("http://localhost:3333/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-        
-      }),
-    })
-    .then(function (resposta) {
-      console.log("resposta: ", resposta);
-      
-      if (resposta.ok) {
-        mensagem_erro.style.color = "green";
-        mensagem_erro.innerHTML =
-        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
+      fetch("http://localhost:3333/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
 
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            mensagem_erro.style.color = "green";
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+            cadastroButton.disabled = false
+
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          cadastroButton.disabled = false
+
+        });
 
     }
+
   }
 
 
