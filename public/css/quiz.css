@@ -16,6 +16,8 @@
 
 }
 
+
+
 #imagem_cabecalho img{
 
     width: 85px;
@@ -36,23 +38,22 @@
 
 }
 
+
+
 #conteiner_quiz_perguntas{
 
-    background-color: aliceblue;
-    width: 60%;
-    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10%;
-    border-radius: 10px;   
     gap: 25px;
-    margin-top: 25px;
-}
+    margin: 24px;
+} 
+
+
 
 #sessao_quiz{
 
-    width: 100dvw;
+    width: 97dvw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,4 +71,18 @@
     margin: 10px;
 
 
+}
+
+#pergunta{
+
+background-color: aliceblue;
+height: 40dvh;
+width: 48dvw;
+padding-left: 10px;
+gap: 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+border-radius: 20px;
+margin: 10px;
 }
