@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
   <script src="./js/sessao.js"></script>
   <title>Pagina inicial</title>
+  <link rel="stylesheet" href="./css/telahome.css">
 </head>
 <body onload="validarSessao()">
-    <header>
+    <header id="conteiner_cabecalho">
 
       <div id="imagem_cabecalho">
         <img src="./assets/imagens/Logo.svg" alt="">
       </div>
-      <div id="Conteiner informações">
-         <h6>Quiz</h6>
+      <div id="Conteiner_informações">
+         <h6><a href="./telahome.html">Quiz</a></h6>
          <h6>Jogo</h6>
          <h6>Dashboard</h6>
+      </div>
+      <div>
+        <h6><a href="./index.html">Sair</a></h6>
       </div>
     </header>
 
@@ -24,11 +27,12 @@
 
       <div id="quiz">
 
-        <h2>Quiz</h2>
-        
-        <h5>Venha e nos conte um pouco sobre você!</h5><br>
-        <p>Realize a analise desses dados através de nossa Dashboard</p><br>
-        <button>Realizar Quiz</button>
+      <h2>Quiz</h2>
+      <div id="paragrafo_quiz">
+        <p>Venha e nos conte um pouco sobre você!</p><br>
+        <p>Realize a análise desses dados através de nossa Dashboard</p><br>
+      </div>  
+        <button><a href="./quiz.html">Realizar Quiz</a></button>
       </div>
 
     </section>

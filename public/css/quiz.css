@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+#conteiner_cabecalho{
+
+    background-color: #C680E4;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#imagem_cabecalho img{
+
+    width: 85px;
+    height: 110px;
+
+}
+
+#Conteiner_informações{
+
+    background-color: rgb(222, 237, 249);
+    width: 50%;
+    height: 5dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+
+}
+
+#conteiner_quiz_perguntas{
+
+    background-color: aliceblue;
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10%;
+    border-radius: 10px;   
+    gap: 25px;
+    margin-top: 25px;
+}
+
+#sessao_quiz{
+
+    width: 100dvw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#conteiner_quiz_perguntas button {
+
+    width: 20dvw;
+    height: 4dvh;
+    color: white;
+    background-color: #C680E4;
+    border-radius: 20px;
+    justify-content: space-around;
+    margin: 10px;
+
+
+}
