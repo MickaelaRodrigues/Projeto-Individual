@@ -1,0 +1,73 @@
+const e = require("express");
+var quizModel = require("../models/quizModel");
+
+function listar(req, res) {
+    quizModel.listar().then(function (resultado) {
+        if (resultado.length > 0) {
+            let vetor_lista_pegunta_id = []
+            let json_respostas = {}
+
+            for (let i = 0; i < resultado.length; i++) {
+                if (!vetor_lista_pegunta_id.includes(resultado[i].id_pergunta)) {
+                    vetor_lista_pegunta_id.push(resultado[i].id_pergunta)
+                    json_respostas[resultado[i].id_pergunta] = {
+                        pergunta: resultado[i].pergunta,
+                        alternativas: [resultado[i].alternativa],
+                        caracteristicas: [resultado[i].caracteristica]
+                    }
+                } else {
+                    json_respostas[resultado[i].id_pergunta].alternativas.push(resultado[i].alternativa)
+                    json_respostas[resultado[i].id_pergunta].caracteristicas.push(resultado[i].caracteristica)
+                }
+
+            }
+
+            res.status(200).json(json_respostas);
+
+         } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function cadastrarEstilo(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fk_usuario = req.body.fk_usuarioServer;
+    var estilo = req.body.estiloServer;
+
+    // Faça as validações dos valores
+    if (fk_usuario == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    } else if (estilo == undefined) {
+        res.status(400).send("Seu estilo está undefined!");
+    }
+    else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        quizModel.cadastrarEstilo(estilo, fk_usuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+module.exports = {
+    listar,
+    cadastrarEstilo
+}
