@@ -47,7 +47,13 @@ INSERT INTO pergunta (pergunta) VALUES
 ('Como seus amigos te descrevem?'),
 ('Qual emoção prefere sentir ao acordar?'),
 ('Qual elemento muda seu humor instantaneamente?'),
-('Qual a melhor forma de colocar as emoções para fora?');
+('Qual a melhor forma de colocar as emoções para fora?'),
+('O que mais te atrai em um evento musical?'),
+('Qual o seu "mood" ideal para uma tarde de domingo?'),
+('Se você fosse um artista, como seria o seu palco?'),
+('Qual dessas atividades mais ajuda você a recarregar as energias?'),
+('Qual item não pode faltar no seu dia a dia?');
+
 
 INSERT INTO alternativa (alternativa, caracteristica, fk_pergunta) VALUES
 ('MPB', null, 1),
@@ -88,3 +94,28 @@ INSERT INTO alternativa (alternativa, caracteristica, fk_pergunta) VALUES
 ('Cantar a plenos pulmões','Pop' ,7),
 ('Ouvir rimas rápidas','Rap' ,7),
 ('Relaxar e ouvir vibrações positivas','Raggae' ,7);
+
+('Dançar até cansar','Samba' ,8),
+('Estilo ostentação e graves potentes','Trap',8),
+('Letras inteligentes e voz e violão','MPB',8),
+('Show de luzes e clima de balada','Sertanejo',8),
+
+('Churrasquinho com os amigos e batucada','Samba',9),
+('Focado no lifestyle e criando algo novo','Trap',9),
+('Café e clássicos da música brasileira','MPB',9),
+('Ouvindo um modão e curtindo a saudade','Sertanejo',9),
+
+('Um quintal bem raiz e pé no chão','Samba',10),
+('Cenário urbano com muito neon e fumaça','Trap',10),
+('Um teatro intimista com luz quente','MPB',10),
+('Um palco iluminado com coral e muita entrega', 'Gospel', 10),
+
+('Limpar a casa ou treinar ouvindo batidões','Funk',11),
+('Ler textos inspiradores ou ouvir louvores','Gospel',11),
+('Cozinhar para a família com um som de fundo','Samba',11),
+('Pegar a estrada ouvindo histórias cantadas','Sertanejo',11),
+
+('Óculos escuros e chinelo no pé', 'Raggae', 12),
+('Corrente pesada e tênis de marca', 'Trap', 12),
+('Boné de aba reta e roupas largas', 'Trap', 12),
+('Caixinha de som potente e Juliet', 'Funk', 12);
