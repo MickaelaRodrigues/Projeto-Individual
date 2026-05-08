@@ -93,7 +93,7 @@ INSERT INTO alternativa (alternativa, caracteristica, fk_pergunta) VALUES
 ('Dançar até cansar','Sertanejo' ,7),
 ('Cantar a plenos pulmões','Pop' ,7),
 ('Ouvir rimas rápidas','Rap' ,7),
-('Relaxar e ouvir vibrações positivas','Raggae' ,7);
+('Relaxar e ouvir vibrações positivas','Raggae' ,7),
 
 ('Dançar até cansar','Samba' ,8),
 ('Estilo ostentação e graves potentes','Trap',8),

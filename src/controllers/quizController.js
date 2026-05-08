@@ -21,10 +21,10 @@ function listar(req, res) {
                 }
 
             }
-
+            json_respostas = Object.values(json_respostas);
             res.status(200).json(json_respostas);
 
-         } else {
+        } else {
             res.status(204).send("Nenhum resultado encontrado!")
         }
     }).catch(function (erro) {
