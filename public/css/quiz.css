@@ -44,7 +44,7 @@
 #conteiner_quiz_perguntas{
 
     width: 100%;
-    height: 550dvh;
+    height: 60vh;
     display: flex;
     color: black;
     flex-direction: column;
@@ -70,7 +70,7 @@
 #sessao_quiz h1{
 
     background-color:rgb(218, 234, 247);
-    width: 48%;
+    width: 50%;
     height: 8dvh;
     padding-left: 40px;
     display: flex;
@@ -95,8 +95,8 @@
 .pergunta{
 
 background-color: aliceblue;
-height: 40dvh;
-width: 48dvw;
+height: 50dvh;
+width: 50dvw;
 padding-left: 10px;
 gap: 30px;
 display: flex;

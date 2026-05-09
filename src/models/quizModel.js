@@ -4,9 +4,9 @@ function listar() {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ");
 
     var instrucaoSql = `
-    SELECT p.id_pergunta, p.pergunta, a.alternativa, a.caracteristica
+    SELECT p.id_pergunta, p.pergunta, a.alternativa, c.nome as caracteristica
     from pergunta as p join alternativa as a 
-    on a.fk_pergunta = p.id_pergunta;    
+    on a.fk_pergunta = p.id_pergunta left join caracteristica as c on c.fk_alternativa = a.id_alternativa;  
  `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
