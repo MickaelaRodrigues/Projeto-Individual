@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>SoundMind</title>
 
-    
-    <link rel="stylesheet" href="./../css/dashboards.css">
+
+    <link rel="stylesheet" href="/public/css/dash.css">
+    <link rel="stylesheet" href="/public/css/telahome.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
@@ -29,50 +30,123 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body>
+    <header id="conteiner_cabecalho">
 
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
+        <div id="imagem_cabecalho">
+            <img src="/public/assets/imagens/Design sem nome (2).png" alt="">
+        </div>
+        <div id="Conteiner_informações">
+            <h6><a href="./telahome.html">Quiz</a></h6>
+            <h6><a href="/public/dashboard/dashboard.html">Dashboard</a></h6>
+        </div>
+        <div>
+            <h6><a href="./index.html">Sair</a></h6>
+        </div>
+    </header>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+    <section id="Dashboard">
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
 
-            <div class="btn-nav">
+        <div id="titulo_dash">
 
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
+            <h2>Visão geral da SoundMind</h2>
         </div>
 
-        <div class="dash">
-            <div id="alerta">
+
+        <div id="conteiner_kpi">
+
+            <div id="kpi">
+
+                <div id="icones_kpi">
+                    <img src="/public/assets/imagens/icone_nota.avif" alt="">
+                </div>
+
+                <div id="paragrafo_kpi">
+                    <p><b>Seu Gênero Musical Dominante</b></p>
+                </div>
+
+                <div id="estilo_kpi">
+                    <h2>Pop</h2>
+                </div>
+
+                <p>Baseado nas suas respostas</p>
             </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+            <div id="kpi">
+
+                <div id="icones_kpi">
+                    <img src="/public/assets/imagens/iconAlvo.png" alt="">
+                </div>
+
+                <div id="paragrafo_kpi">
+                    <p><b>Foco da Música</b></p>
+                </div>
+
+                <div id="estilo_kpi">
+                    <h2>Batida</h2>
+                </div>
+
+                <p>Baseado nas suas respostas</p>
             </div>
-            <div id="graficos">
+
+            <div id="kpi">
+
+                <div id="icones_kpi">
+                    <img src="/public/assets/imagens/iconGrupo.png" alt="">
+                </div>
+
+                <div id="paragrafo_kpi">
+                    <p><b>Grupo que pertence</b></p>
+                </div>
+
+                <div id="estilo_kpi">
+                    <h2>Harmonia</h2>
+                </div>
+
+                <p>Baseado nas suas respostas</p>
+            </div>
+
+            <div id="kpi">
+
+                <div id="icones_kpi">
+                    <img src="/public/assets/imagens/icone_energia.jpeg" alt="">
+                </div>
+
+                <div id="paragrafo_kpi">
+                    <p><b> Como recarrega as energias</b></p>
+                </div>
+
+                <div id="estilo_kpi">
+                    <h2>Caminhando</h2>
+                </div>
+
+                <p>Baseado nas suas respostas</p>
             </div>
         </div>
-    </div>
+
+        <div id="conteiner_graficos">
+
+            <div id="grafico_1">
+
+                <h3>Seu top 5 gêneros favoritos</h3>
+
+
+
+            </div>
+
+            <div id="grafico_2">
+
+
+                <h3>Composição do seu gosto musical</h3>
+
+
+
+            </div>
+
+
+
+        </div>
+    </section>
 
 
 </body>

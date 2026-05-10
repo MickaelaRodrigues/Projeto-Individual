@@ -18,15 +18,15 @@
 
 #imagem_cabecalho img{
 
-    width: 85px;
-    height: 110px;
+    width: 8dvw;
+    height: 15dvh;
 
 }
 
 #Conteiner_informações{
 
     background-color: rgb(222, 237, 249);
-    width: 50%;
+    width: 40%;
     height: 5dvh;
     display: flex;
     flex-direction: row;
