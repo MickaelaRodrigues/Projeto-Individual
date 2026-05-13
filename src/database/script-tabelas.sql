@@ -8,41 +8,14 @@ CREATE TABLE usuario (
     senha VARCHAR(50)
 );
 
-CREATE TABLE estilo (
-    id_estilo INT PRIMARY KEY AUTO_INCREMENT,
-    estilo VARCHAR(50)
-);
+insert into usuario values
+(1,'Mickaela','admin@gamil.com','soundmind2026');
 
-
-CREATE TABLE usuario_estilo (
-    fk_usuario INT,
-    fk_estilo INT,
-    data DATE,
-    pontos INT, 
-    PRIMARY KEY (fk_usuario, fk_estilo, data),
-    CONSTRAINT fk_usuario_resultado FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
-    CONSTRAINT fk_estilo_resultado FOREIGN KEY (fk_estilo) REFERENCES estilo(id_estilo)
-);
 
 CREATE TABLE pergunta (
     id_pergunta INT PRIMARY KEY AUTO_INCREMENT,
     pergunta VARCHAR(100)
 );
-
-CREATE TABLE alternativa (
-    id_alternativa INT PRIMARY KEY AUTO_INCREMENT,
-    alternativa VARCHAR(45),
-    fk_pergunta INT,
-    CONSTRAINT fk_pergunta_alternativa FOREIGN KEY (fk_pergunta) REFERENCES pergunta(id_pergunta)
-);
-
-CREATE TABLE caracteristica (
-    id_caracteristica INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45), 
-    fk_alternativa INT,
-    CONSTRAINT fk_alternativa_carac FOREIGN KEY (fk_alternativa) REFERENCES alternativa(id_alternativa)
-);
-
 
 INSERT INTO pergunta (pergunta) VALUES
 ('Qual seu estilo musical favorito?'),
@@ -58,7 +31,12 @@ INSERT INTO pergunta (pergunta) VALUES
 ('Qual dessas atividades mais ajuda você a recarregar as energias?'),
 ('Qual item não pode faltar no seu dia a dia?');
 
-
+CREATE TABLE alternativa (
+    id_alternativa INT PRIMARY KEY AUTO_INCREMENT,
+    alternativa VARCHAR(45),
+    fk_pergunta INT,
+    CONSTRAINT fk_pergunta_alternativa FOREIGN KEY (fk_pergunta) REFERENCES pergunta(id_pergunta)
+);
 
 INSERT INTO alternativa (alternativa, fk_pergunta) VALUES
 ('MPB', 1), ('Pop', 1), ('Funk', 1), ('Trap', 1), 
@@ -119,7 +97,12 @@ INSERT INTO alternativa (alternativa, fk_pergunta) VALUES
 ('Boné de aba reta e roupas largas', 12),
 ('Caixinha de som potente e Juliet', 12);
 
-
+CREATE TABLE caracteristica (
+    id_caracteristica INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45), 
+    fk_alternativa INT,
+    CONSTRAINT fk_alternativa_carac FOREIGN KEY (fk_alternativa) REFERENCES alternativa(id_alternativa)
+);
 
 INSERT INTO caracteristica (nome, fk_alternativa) VALUES
 ('Raggae', 9),
@@ -175,8 +158,23 @@ INSERT INTO caracteristica (nome, fk_alternativa) VALUES
  ('Trap', 50),
  ('Trap', 51), 
  ('Funk', 52);
+ 
+ select * from alternativa;
+
+CREATE TABLE usuario_alternativa (
+    fk_usuario INT,
+    fk_alternativa INT,
+    dataResposta dateTime default now(),
+    PRIMARY KEY (fk_usuario, fk_alternativa, dataResposta),
+    CONSTRAINT fk_usuario_resultado FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+    CONSTRAINT fk_alternativa_resultado FOREIGN KEY (fk_alternativa) REFERENCES alternativa(id_alternativa)
+);
+
+INSERT INTO usuario_alternativa (fk_usuario,fk_alternativa) VALUES 
+(1,4);
 
 
-INSERT INTO estilo (estilo) VALUES 
-('MPB'), ('Pop'), ('Funk'), ('Trap'), ('Samba'), 
-('Gospel'), ('Raggae'), ('Sertanejo'), ('Rap');
+
+
+
+

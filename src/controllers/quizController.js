@@ -35,21 +35,21 @@ function listar(req, res) {
 }
 
 
-function cadastrarEstilo(req, res) {
+function salvar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var fk_usuario = req.body.fk_usuarioServer;
-    var estilo = req.body.estiloServer;
+    var fk_alternativa = req.body.fk_alternativaServer;
 
     // Faça as validações dos valores
     if (fk_usuario == undefined) {
         res.status(400).send("Seu id está undefined!");
-    } else if (estilo == undefined) {
-        res.status(400).send("Seu estilo está undefined!");
+    } else if (fk_alternativa == undefined) {
+        res.status(400).send("Seu alternativa está undefined!");
     }
     else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        quizModel.cadastrarEstilo(estilo, fk_usuario)
+        quizModel.salvar(fk_alternativa, fk_usuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -69,5 +69,5 @@ function cadastrarEstilo(req, res) {
 
 module.exports = {
     listar,
-    cadastrarEstilo
+    salvar
 }

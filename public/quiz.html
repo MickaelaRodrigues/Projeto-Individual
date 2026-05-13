@@ -18,7 +18,7 @@
         </div>
         <div id="Conteiner_informações">
             <h6><a href="./telahome.html">Quiz</a></h6>
-         <h6><a href="/public/dashboard/dashboard.html">Dashboarda</a></h6>
+            <h6><a href="/public/dashboard/dashboard.html">Dashboard</a></h6>
         </div>
         <div id="botao_saida">
             <h6><a href="./index.html">Sair</a></h6>
@@ -51,46 +51,147 @@
 
     let pergunta_atual = 1
 
+    let jsonPerguntas = [
+        {
+            "pergunta": "Qual seu estilo musical favorito?",
+            "alternativas": [
+                { "id": 1, "texto": "MPB" },
+                { "id": 2, "texto": "Pop" },
+                { "id": 3, "texto": "Funk" },
+                { "id": 4, "texto": "Trap" },
+                { "id": 5, "texto": "Samba" },
+                { "id": 6, "texto": "Gospel" },
+                { "id": 7, "texto": "Raggae" },
+                { "id": 8, "texto": "Sertanejo" }
+            ]
+        },
+        {
+            "pergunta": "O que uma Música precisa ter para te prender?",
+            "alternativas": [
+                { "id": 9, "texto": "Paz/Positividade" },
+                { "id": 10, "texto": "Rimas/Atitude" },
+                { "id": 11, "texto": "Profundidade/Poesia" },
+                { "id": 12, "texto": "Refrão que gruda na cabeça" }
+            ]
+        },
+        {
+            "pergunta": "Onde vc Mais gosta de ouvir sua playlist Favorita?",
+            "alternativas": [
+                { "id": 13, "texto": "Carro com volume máximo" },
+                { "id": 14, "texto": "Quarto e Paz interior" },
+                { "id": 15, "texto": "Fone e enquanto caminha" },
+                { "id": 16, "texto": "Saída com os amigos" }
+            ]
+        },
+        {
+            "pergunta": "Como seus amigos te descrevem?",
+            "alternativas": [
+                { "id": 17, "texto": "Pessoa mais animada do grupo" },
+                { "id": 18, "texto": "Calmo e espiritualizado" },
+                { "id": 19, "texto": "Fiel as raizes e tradições" },
+                { "id": 20, "texto": "Descontraído e de bem com a vida" }
+            ]
+        },
+        {
+            "pergunta": "Qual emoção prefere sentir ao acordar?",
+            "alternativas": [
+                { "id": 21, "texto": "Invencível/Focado" },
+                { "id": 22, "texto": "Energia/Felicidade" },
+                { "id": 23, "texto": "Tranquilidade/Calma" },
+                { "id": 24, "texto": "Gratidão/Conforto" }
+            ]
+        },
+        {
+            "pergunta": "Qual elemento muda seu humor instantaneamente?",
+            "alternativas": [
+                { "id": 25, "texto": "Ritmo arrastado/Som apaixonado" },
+                { "id": 26, "texto": "Flow rápido/Afiado" },
+                { "id": 27, "texto": "Linha relaxante/Devagar" },
+                { "id": 28, "texto": "Som que não consegue ficar parado" }
+            ]
+        },
+        {
+            "pergunta": "Qual a melhor forma de colocar as emoções para fora?",
+            "alternativas": [
+                { "id": 29, "texto": "Dançar até cansar" },
+                { "id": 30, "texto": "Cantar a plenos pulmões" },
+                { "id": 31, "texto": "Ouvir rimas rápidas" },
+                { "id": 32, "texto": "Relaxar e ouvir vibrações positivas" }
+            ]
+        },
+        {
+            "pergunta": "O que mais te atrai em um evento musical?",
+            "alternativas": [
+                { "id": 33, "texto": "Dançar até cansar" },
+                { "id": 34, "texto": "Estilo ostentação e graves potentes" },
+                { "id": 35, "texto": "Letras inteligentes e voz e violão" },
+                { "id": 36, "texto": "Show de luzes e clima de balada" }
+            ]
+        },
+        {
+            "pergunta": "Qual o seu \"mood\" ideal para uma tarde de domingo?",
+            "alternativas": [
+                { "id": 37, "texto": "Churrasquinho com os amigos e batucada" },
+                { "id": 38, "texto": "Focado no lifestyle e criando algo novo" },
+                { "id": 39, "texto": "Café e clássicos da música brasileira" },
+                { "id": 40, "texto": "Ouvindo um modão e curtindo a saudade" }
+            ]
+        },
+        {
+            "pergunta": "Se você fosse um artista, como seria o seu palco?",
+            "alternativas": [
+                { "id": 41, "texto": "Um quintal bem raiz e pé no chão" },
+                { "id": 42, "texto": "Cenário urbano com muito neon e fumaça" },
+                { "id": 43, "texto": "Um teatro intimista com luz quente" },
+                { "id": 44, "texto": "Um palco iluminado com coral e muita entrega" }
+            ]
+        },
+        {
+            "pergunta": "Qual dessas atividades mais ajuda você a recarregar as energias?",
+            "alternativas": [
+                { "id": 45, "texto": "Limpar a casa ou treinar ouvindo batidões" },
+                { "id": 46, "texto": "Ler textos inspiradores ou ouvir louvores" },
+                { "id": 47, "texto": "Cozinhar para a família com um som de fundo" },
+                { "id": 48, "texto": "Pegar a estrada ouvindo histórias cantadas" }
+            ]
+        },
+        {
+            "pergunta": "Qual item não pode faltar no seu dia a dia?",
+            "alternativas": [
+                { "id": 49, "texto": "Óculos escuros e chinelo no pé" },
+                { "id": 50, "texto": "Corrente pesada e tênis de marca" },
+                { "id": 51, "texto": "Boné de aba reta e roupas largas" },
+                { "id": 52, "texto": "Caixinha de som potente e Juliet" }
+            ]
+        }
+    ]
+
+
+
     let bloco_questoes = [];
 
     let bloco_caracteristica = [];
 
-
-
-
     function pegar_perguntas() {
+
 
         conteiner_quiz_perguntas.innerHTML = ""
 
-        fetch("/quiz/listar", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(function (resposta) {
+        for (let i = 0; i < jsonPerguntas.length; i++) {
 
-                return resposta.json();
-            })
-            .then(function (dados_json) {
+            let bloco_alternativas = ``;
 
-                console.log("Dados recebidos:", dados_json);
+            for (let j = 0; j < jsonPerguntas[i].alternativas.length; j++) {
 
-                for (let i = 0; i < dados_json.length; i++) {
+                bloco_alternativas += `<button onclick="passar_alternativa('${jsonPerguntas[i].alternativas[j].id}')">${jsonPerguntas[i].alternativas[j].texto}</button>`
+            }
+            bloco_questoes.push(
 
-                    let bloco_alternativas = ``;
-
-                    for (let j = 0; j < dados_json[i].alternativas.length; j++) {
-
-                        bloco_alternativas += `<button onclick="passar_caracteristica('${dados_json[i].caracteristicas[j]}')">${dados_json[i].alternativas[j]}</button>`
-                    }
-                    bloco_questoes.push(
-
-                        `
+                `
                         <div class="pergunta">
                             
                             <div class="titulo">
-                                <h2>${dados_json[i].pergunta}</h2>
+                                <h2>${jsonPerguntas[i].pergunta}</h2>
                             </div>
                                 
                             <div class="opcoes_resposta">
@@ -101,17 +202,14 @@
                                     
                             </div>
                                     
-                                    `
-                    )
+                            `
+            )
+        }
 
+        setTimeout(mostrar_pergunta, 500)
 
-                }
-                setTimeout(mostrar_pergunta, 500)
-            })
-            .catch(function (erro) {
-                console.log(`#ERRO: ${erro}`);
-            });
     }
+
 
     function mostrar_pergunta() {
 
@@ -120,45 +218,57 @@
 
     }
 
-    function passar_caracteristica(caracteristica) {
-
-        bloco_caracteristica.push(caracteristica)
+    function passar_alternativa(alternativa) {
 
         pergunta_atual += 1;
 
+        fetch("http://localhost:3333/quiz/salvar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                fk_alternativaServer: alternativa,
+                fk_usuarioServer: sessionStorage.ID_USUARIO
 
-        if (pergunta_atual > bloco_questoes.length) {
 
-            for (let i = 0; i < bloco_caracteristica.length; i++) {
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    if (pergunta_atual > jsonPerguntas.length) {
+
+                        setTimeout(() => {
+                            window.location = "dashboard/dashboard.html";
+                        }, "2000");
 
 
-                if (bloco_caracteristica[i] == `MPB`) { mpb += 1 }
-                else if (bloco_caracteristica[i] == `Pop`) { pop += 1 }
-                else if (bloco_caracteristica[i] == `Funk`) { funk += 1 }
-                else if (bloco_caracteristica[i] == `Trap`) { trap += 1 }
-                else if (bloco_caracteristica[i] == `Samba`) { samba += 1 }
-                else if (bloco_caracteristica[i] == `Gospel`) { gospel += 1 }
-                else if (bloco_caracteristica[i] == `Raggae`) { raggae += 1 }
-                else if (bloco_caracteristica[i] == `Sertanejo`) { sertanejo += 1 }
+                    } else {
 
-            }
-            alert (`${mpb},${pop},${funk},${trap},${samba},${gospel},${raggae},${sertanejo}`)
-            
-            alert(`Fim do quiz`)
+                        mostrar_pergunta()
 
-        } else {
+                    }
 
-            mostrar_pergunta()
-        }
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
 
 
 
 
     }
-
-
-
-
 
 
 </script>

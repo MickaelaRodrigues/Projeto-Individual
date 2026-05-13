@@ -7,8 +7,8 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
-router.post("/cadastrar/estilo", function (req, res) {
-    quizController.cadastrarEstilo(req, res);
+router.post("/salvar", function (req, res) {
+    quizController.salvar(req, res);
 });
 
 
