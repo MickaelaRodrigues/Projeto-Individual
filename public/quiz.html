@@ -39,15 +39,6 @@
 </html>
 <script>
 
-    let mpb = 0
-    let pop = 0
-    let funk = 0
-    let trap = 0
-    let samba = 0
-    let gospel = 0
-    let raggae = 0
-    let sertanejo = 0
-    let rap = 0
 
     let pergunta_atual = 1
 
@@ -222,7 +213,7 @@
 
         pergunta_atual += 1;
 
-        fetch("http://localhost:3333/quiz/salvar", {
+        fetch("/quiz/salvar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

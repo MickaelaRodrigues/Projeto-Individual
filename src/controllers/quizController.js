@@ -67,7 +67,54 @@ function salvar(req, res) {
     }
 }
 
+function obterDados(req, res) {
+
+    const limite_linhas = 12;
+
+    var fk_usuario = req.params.fk_usuario;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    quizModel.obterDados(fk_usuario, limite_linhas).then(function (resultado) {
+       if (resultado.length > 0) {
+        
+        let resposta_final = []; 
+
+        for (let i = 0; i < resultado.length; i++) {
+            let nomeAtual = resultado[i].nome;
+            let encontrado = false;
+
+            for (let j = 0; j < resposta_final.length; j++) {
+                if (resposta_final[j].nome == nomeAtual) {
+                    resposta_final[j].vezes++;
+                    encontrado = true;
+                    break; 
+                }
+            }
+
+            if (!encontrado) {
+                resposta_final.push({
+                    nome: nomeAtual,
+                    vezes: 1
+                });
+            }
+        }
+
+        res.status(200).json(resposta_final);
+
+    } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+    }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     listar,
-    salvar
+    salvar,
+    obterDados
 }

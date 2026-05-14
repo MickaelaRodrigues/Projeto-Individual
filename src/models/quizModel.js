@@ -23,7 +23,21 @@ function salvar (fk_alternativa, fk_usuario) {
     return database.executar(instrucaoSql);
 }
 
+function obterDados(fk_usuario, limite_linhas) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ");
+
+    var instrucaoSql = `
+    SELECT caracteristica.nome FROM usuario_alternativa
+    JOIN alternativa ON usuario_alternativa.fk_alternativa = alternativa.id_alternativa 
+    JOIN caracteristica ON caracteristica.fk_alternativa = alternativa.id_alternativa 
+    WHERE fk_usuario = ${fk_usuario} ORDER BY dataResposta DESC LIMIT ${limite_linhas};  
+ `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listar,
-    salvar
+    salvar,
+    obterDados
 };

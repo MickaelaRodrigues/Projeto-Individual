@@ -11,5 +11,9 @@ router.post("/salvar", function (req, res) {
     quizController.salvar(req, res);
 });
 
+router.get("/obterDados/:fk_usuario", function (req, res) {
+    quizController.obterDados(req, res);
+});
+
 
 module.exports = router;
