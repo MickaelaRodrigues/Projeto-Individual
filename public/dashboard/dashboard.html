@@ -58,13 +58,13 @@
                 </div>
 
                 <div id="estilo_kpi">
-                    <h2>Pop</h2>
+                    <h2 id="titulo_estilo"></h2>
                 </div>
 
                 <p>Baseado nas suas respostas</p>
             </div>
 
-            <div id="kpi">
+            <!-- <div id="kpi">
 
                 <div id="icones_kpi">
                     <img src=".././assets/imagens/iconAlvo.png" alt="">
@@ -79,7 +79,7 @@
                 </div>
 
                 <p>Baseado nas suas respostas</p>
-            </div>
+            </div> -->
 
             <div id="kpi">
 
@@ -92,13 +92,13 @@
                 </div>
 
                 <div id="estilo_kpi">
-                    <h2>Harmonia</h2>
+                    <h2 id="titulo_grupo">Harmonia</h2>
                 </div>
 
                 <p>Baseado nas suas respostas</p>
             </div>
 
-            <div id="kpi">
+            <!-- <div id="kpi">
 
                 <div id="icones_kpi">
                     <img src=".././assets/imagens/icone_energia.jpeg" alt="">
@@ -113,7 +113,7 @@
                 </div>
 
                 <p>Baseado nas suas respostas</p>
-            </div>
+            </div> -->
         </div>
 
         <div id="conteiner_graficos">
@@ -162,6 +162,19 @@
 
                     plotarGrafico(resposta);
 
+                    if(resposta.length>0){
+                        let maiorvalor = 0
+                        let genero = ``
+                        for(let i = 0;i<resposta.length;i++){
+                        if(maiorvalor<resposta[i].vezes){
+
+                            maiorvalor = resposta[i].vezes;
+                            genero = resposta[i].nome
+                        }
+                        
+                    }
+                    titulo_estilo.innerHTML = genero;
+                }
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
