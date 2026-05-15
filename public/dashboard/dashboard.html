@@ -92,7 +92,7 @@
                 </div>
 
                 <div id="estilo_kpi">
-                    <h2 id="titulo_grupo">Harmonia</h2>
+                    <h2 id="titulo_grupo"></h2>
                 </div>
 
                 <p>Baseado nas suas respostas</p>
@@ -174,6 +174,14 @@
                         
                     }
                     titulo_estilo.innerHTML = genero;
+                    if(genero == `MPB`){ titulo_grupo.innerHTML  = `Intimista`}
+                    else if(genero == `Pop`){ titulo_grupo.innerHTML  = `Energia`}
+                    else if(genero == `Funk`){ titulo_grupo.innerHTML  = `Agitação`}
+                    else if(genero == `Trap`){ titulo_grupo.innerHTML  = `Marra`}
+                    else if(genero == `Samba`){ titulo_grupo.innerHTML  = `Alegria`}
+                    else if(genero == `Gospel`){ titulo_grupo.innerHTML  = `Espiritualidade`}
+                    else if(genero == `Reggae`){ titulo_grupo.innerHTML  = `Paz e amor"`}
+                    else if(genero == `Sertanejo`){ titulo_grupo.innerHTML  = `Sofrência`}
                 }
                 });
             } else {
