@@ -64,7 +64,7 @@
                 <p>Baseado nas suas respostas</p>
             </div>
 
-            <!-- <div id="kpi">
+            <div id="kpi">
 
                 <div id="icones_kpi">
                     <img src=".././assets/imagens/iconAlvo.png" alt="">
@@ -75,11 +75,11 @@
                 </div>
 
                 <div id="estilo_kpi">
-                    <h2>Batida</h2>
+                    <h2 id="titulo_foco"></h2>
                 </div>
 
                 <p>Baseado nas suas respostas</p>
-            </div> -->
+            </div>
 
             <div id="kpi">
 
@@ -174,14 +174,14 @@
                         
                     }
                     titulo_estilo.innerHTML = genero;
-                    if(genero == `MPB`){ titulo_grupo.innerHTML  = `Intimista`}
-                    else if(genero == `Pop`){ titulo_grupo.innerHTML  = `Energia`}
-                    else if(genero == `Funk`){ titulo_grupo.innerHTML  = `Agitação`}
-                    else if(genero == `Trap`){ titulo_grupo.innerHTML  = `Marra`}
-                    else if(genero == `Samba`){ titulo_grupo.innerHTML  = `Alegria`}
-                    else if(genero == `Gospel`){ titulo_grupo.innerHTML  = `Espiritualidade`}
-                    else if(genero == `Reggae`){ titulo_grupo.innerHTML  = `Paz e amor"`}
-                    else if(genero == `Sertanejo`){ titulo_grupo.innerHTML  = `Sofrência`}
+                    if(genero == `MPB`){ titulo_grupo.innerHTML  = `Intimista`; titulo_foco.innerHTML = `Poesia`}
+                    else if(genero == `Pop`){ titulo_grupo.innerHTML  = `Energia`;  titulo_foco.innerHTML = `Refrão chiclete`}
+                    else if(genero == `Funk`){ titulo_grupo.innerHTML  = `Agitação`;  titulo_foco.innerHTML = `Batida`}
+                    else if(genero == `Trap`){ titulo_grupo.innerHTML  = `Marra`;  titulo_foco.innerHTML = `Flow`}
+                    else if(genero == `Samba`){ titulo_grupo.innerHTML  = `Alegria`;  titulo_foco.innerHTML = `Batucada`}
+                    else if(genero == `Gospel`){ titulo_grupo.innerHTML  = `Espiritualidade`; titulo_foco.innerHTML = `Sentimento`}
+                    else if(genero == `Reggae`){ titulo_grupo.innerHTML  = `Paz e amor`;  titulo_foco.innerHTML = `Repetição`}
+                    else if(genero == `Sertanejo`){ titulo_grupo.innerHTML  = `Sofrência`;  titulo_foco.innerHTML = `Instrumentos`}
                 }
                 });
             } else {
