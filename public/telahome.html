@@ -18,7 +18,7 @@
          <h6>Dashboard</h6>
       </div>
       <div>
-        <h6><a href="./index.html">Sair</a></h6>
+        <button id="botao_sair"><a href="./index.html">Sair</a></button>
       </div>
     </header>
 
@@ -31,14 +31,21 @@
         <p>Venha e nos conte um pouco sobre você!</p><br>
         <p>Realize a análise desses dados através de nossa Dashboard</p><br>
       </div>  
-        <button><a href="./quiz.html">Realizar Quiz</a></button>
+        <button onclick="direcionarQuiz()">Realizar Quiz</button>
       </div>
 
     </section>
-
-
-
-
-
+    
 </body>
 </html>
+<script>
+
+  function direcionarQuiz(){
+
+    window.location.href = "./quiz.html"
+
+
+  }
+
+
+</script>

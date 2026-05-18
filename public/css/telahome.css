@@ -16,12 +16,40 @@
 
 }
 
+
 #imagem_cabecalho img{
 
     width: 8dvw;
     height: 15dvh;
 
 }
+
+#Conteiner_informações a{
+
+    text-decoration: none;
+    padding: 15px;
+
+
+}
+
+#botao_sair{
+
+    width: 4dvw;
+    height: 3dvh;
+    background-color: aqua;
+    border-radius: 20px;
+    text-decoration: none;
+    
+    
+}
+
+#botao_sair a{
+    
+    color: #850bb9;
+    text-decoration: none;
+}
+
+
 
 #Conteiner_informações{
 

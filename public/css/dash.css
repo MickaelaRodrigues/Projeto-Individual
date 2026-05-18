@@ -1,4 +1,10 @@
-
+a{  
+    height: 3dvh;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 #Dashboard{
 
@@ -9,17 +15,18 @@
 
 #titulo_dash{
 
-    width: 70%;
+    width: 89%;
     height: 5%;
     padding: 10px;
     margin: 10px;
-    margin-left: 6vw;
+    margin-left: 20dvw;
 }
 
 #conteiner_kpi {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content:center;
+    gap: 25px;
 }
 
 #kpi {
@@ -58,7 +65,7 @@
 #grafico_1{
 
     background-color: aliceblue;
-    width: 40%;
+    width: 50%;
     height: 50dvh;
     border-radius: 10px;
     padding: 15px;

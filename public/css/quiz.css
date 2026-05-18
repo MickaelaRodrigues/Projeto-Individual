@@ -92,6 +92,33 @@
 
 }
 
+#botao_saida{
+
+    background-color: aqua;
+    width: 4dvw;
+    height: 3dvh;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#botao_sair_quiz{
+    
+    text-decoration: none;
+    padding: 15px;
+}
+
+#Conteiner_informações a{
+
+    text-decoration: none;
+    padding: 15px;
+
+
+}
+
+
 .pergunta{
 
 background-color: aliceblue;
