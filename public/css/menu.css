@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+#conteiner_cabecalho {
+
+    background-color: #C680E4;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+#imagem_cabecalho img {
+
+    width: 8dvw;
+    height: 15dvh;
+
+}
+
+#Conteiner_informações a {
+
+    text-decoration: none;
+    padding: 15px;
+
+
+}
+
+#botao_sair {
+
+    width: 4dvw;
+    height: 3dvh;
+    background-color: aqua;
+    border-radius: 20px;
+    text-decoration: none;
+
+
+}
+
+#botao_sair a {
+
+    color: #850bb9;
+    text-decoration: none;
+}
+
+#Conteiner_informações {
+
+    background-color: rgb(222, 237, 249);
+    width: 50%;
+    height: 5dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+
+}
+
+#conteiner_quiz_perguntas button {
+
+    width: 20dvw;
+    height: 4dvh;
+    color: white;
+    background-color: #C680E4;
+    border-radius: 20px;
+    justify-content: space-around;
+    margin: 10px;
+
+
+}
+
+#botao_saida {
+
+    background-color: aqua;
+    width: 4dvw;
+    height: 3dvh;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#botao_sair_quiz {
+
+    text-decoration: none;
+    padding: 15px;
+}
+
+#Conteiner_informações a {
+
+    text-decoration: none;
+    padding: 15px;
+
+
+}
+
+#conteiner_menu {
+
+    width: 100dvw;
+    height: 84dvh;
+    display: flex;
+    flex-direction: column
+}
+
+#conteinerPrincipal {
+
+    height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px
+}
+
+#botao_memoria {
+
+    background-color: #C680E4;
+    color: white;
+    border-radius: 15px;
+    height: 5dvh;
+    width: 10dvw;
+    margin-top: 5dvh;
+}
+
+#conteiner_card {
+
+    background-color: rgb(189, 217, 241);
+    padding: 15px;
+    width: 30dvw;
+    height: 20dvh;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+#conteiner_informacoes_card {
+
+    height: 5dvh;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#descricao_card {
+
+    background-color: aliceblue;
+    height: 5dvh;
+    width: 95%;
+    margin-top: 15px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#conteiner_ano {
+
+    width: 28dvw;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#conteiner_sentimento {
+
+    background-color: #C680E4;
+    color: white;
+    border-radius: 10px;
+    width: 10dvw;
+    height: 4dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#ano {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.512);
+}
+
+#conteiner_menu img {
+
+    width: 8dvw;
+    height: 16dvh;
+    border-radius: 15dvw;
+
+}
