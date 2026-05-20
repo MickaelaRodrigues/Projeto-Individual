@@ -163,7 +163,7 @@
 #conteiner_ano {
 
     width: 28dvw;
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -195,5 +195,129 @@
     width: 8dvw;
     height: 16dvh;
     border-radius: 15dvw;
+
+}
+
+#criar_card {
+
+    display: none;
+    width: 25dvw;
+    height: 70dvh;
+    color: rgb(14, 115, 204);
+    background-color: rgba(240, 248, 255, 0.963);
+    position: absolute;
+    top: 8%;
+    left: 35%;
+    border-radius: 10px;
+    padding: 30px;
+
+
+}
+
+#criar_card img {
+
+    width: 3dvw;
+    height: 5dvh;
+    border-radius: 40dvh;
+
+}
+
+#criar_card input {
+
+    border-color:#e29eff98;
+    border-radius: 10px;
+    width: 22dvw;
+    height: 5dvh;
+
+
+}
+
+#criar_card select{
+
+    border-color:#e29eff98;
+    border-radius: 10px;
+    width: 22dvw;
+    height: 5dvh;
+
+
+}
+
+
+#novo_card {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    color: #850bb9;
+
+}
+
+#informacoes_card p {
+
+    color: black;
+}
+
+
+#informacoes_card {
+
+    width: 25dvw;
+    height: 55dvh;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 15px;
+}
+
+#botao_cancelar{
+
+    width: 10dvw;
+    height: 4dvh;
+    color: black;
+    border-color: aliceblue;
+    border-radius: 10px;
+
+
+} 
+
+#botao_salvar{
+
+    width: 10dvw;
+    height: 4dvh;
+    color: rgb(255, 255, 255);
+    border-color: aliceblue;
+    background-color: #b417f8;
+    border-radius: 10px;
+
+}
+
+#botoes_card{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px ;
+    gap: 20px;
+
+
+}
+
+#sair_criar{
+
+    width: 40%;
+    height: 5dvh;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#sair_criar img{
+
+    height: 4dvh;
+    width: 2dvw;
+
+
 
 }

@@ -39,6 +39,7 @@
 </html>
 <script>
 
+    // Criação de um vetor de Objetos
 
     let pergunta_atual = 1
 
@@ -157,16 +158,21 @@
         }
     ]
 
-
+    // Criação de 2 vetores
 
     let bloco_questoes = [];
 
     let bloco_caracteristica = [];
 
+    // Iniciando função para pegar os dados de Json de Objetos
+
     function pegar_perguntas() {
 
 
         conteiner_quiz_perguntas.innerHTML = ""
+
+        // Criação de uma estruturta de Repetição para percorrer o vetor das perguntas 
+        // Criação de outra estrutura de Repetição para  percorrer as alternativas e características
 
         for (let i = 0; i < jsonPerguntas.length; i++) {
 
@@ -174,8 +180,14 @@
 
             for (let j = 0; j < jsonPerguntas[i].alternativas.length; j++) {
 
-                bloco_alternativas += `<button onclick="passar_alternativa('${jsonPerguntas[i].alternativas[j].id}')">${jsonPerguntas[i].alternativas[j].texto}</button>`
+                bloco_alternativas += 
+                `<button onclick="passar_alternativa('${jsonPerguntas[i].alternativas[j].id}')">
+                    ${jsonPerguntas[i].alternativas[j].texto}
+                    </button>`
             }
+
+    //Armazenando os dados que já foram trabalhados dentro do vetor
+
             bloco_questoes.push(
 
                 `
@@ -197,10 +209,11 @@
             )
         }
 
+   //Tempo para mostrar cada pergunta
+
         setTimeout(mostrar_pergunta, 500)
 
     }
-
 
     function mostrar_pergunta() {
 
@@ -209,18 +222,22 @@
 
     }
 
+    // Estrutura para passar as alternativas quando clicamos na resposta que queremos
+
     function passar_alternativa(alternativa) {
 
         pergunta_atual += 1;
 
+    // Fetch que é utilizado através da rota criada quiz/salvar
+
         fetch("/quiz/salvar", {
+            // Método para inserir as alternativas escolhidas utilizando o Id do usuário
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
+                
                 fk_alternativaServer: alternativa,
                 fk_usuarioServer: sessionStorage.ID_USUARIO
 
@@ -232,15 +249,17 @@
 
                 if (resposta.ok) {
 
+                    //Se o Json jpá tiver sido percorrido, direcionara para dashboard
                     if (pergunta_atual > jsonPerguntas.length) {
-
+                        
                         setTimeout(() => {
                             window.location = "dashboard/dashboard.html";
                         }, "2000");
-
-
+                        
+                        
                     } else {
-
+                     // Enquanto o Json não for percorrido completamente, será mostrado as perguntas
+                        
                         mostrar_pergunta()
 
                     }

@@ -39,7 +39,7 @@
         
         
         <div>
-            <button onclick="" id="botao_memoria">+ Nova memória</button>
+            <button onclick="criar()" id="botao_memoria">+ Nova memória</button>
         </div>
         
         <div id="conteiner_card">
@@ -69,7 +69,72 @@
 
     </div>
 
+    <div id="criar_card">
+        <div id="novo_card">
+            <img src="../public/assets/imagens/card_nota.avif" alt="">
+            <h4>Nova  Memória Musical</h4>
+            <div id="sair_criar">
+                <a href="./menu.html"><img src="./assets/imagens/icone-x.png" alt=""></a>            
+            </div>
+        </div>
+        <div id="informacoes_card">
+            
+            <p>Nome da Música</p>
+            
+            <input type="text" placeholder=" Ex: The Hills">
+            
+            <p>Artista</p>
+            
+            <input type="text" placeholder=" Ex: The Wekend">
+            
+            <p>Memória</p>
+            
+            <input type="text" placeholder=" Descreva a memória especial">
+            
+            <p>Emoção</p>
+            <select name="" id="sel_emocao">
+                <option value="">Selecione</option>
+                <option value="">Paz</option>
+                <option value="">Amor</option>
+                <option value="">Alegria</option>
+                <option value="">Energia</option>
+                <option value="">Esperança</option>
+                <option value="">Nostalgia</option>
+            </select>
+            
+            <p>Ano</p>
+            <input type="Number" placeholder=" Ex: 2026">
+            
+        </div>
+
+        <div id="botoes_card">
+
+            <button onclick="cancelar()" id="botao_cancelar">Cancelar</button>
+            <button id="botao_salvar">Salvar</button>
+            
+        </div>
+
+    </div>
+
 
 
 </body>
 </html>
+<script>
+
+    function criar(){
+
+        criar_card.style.display = "block"
+
+
+    }
+
+    function cancelar(){
+
+        criar_card.style.display = "none"
+
+
+    }
+
+
+</script>
