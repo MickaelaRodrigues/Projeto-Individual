@@ -15,6 +15,7 @@ router.get("/pesquisar/:descricao", function (req, res) {
     avisoController.pesquisarDescricao(req, res);
 });
 
+// feito
 router.post("/publicar/:idUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });

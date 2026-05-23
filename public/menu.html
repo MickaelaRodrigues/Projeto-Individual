@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card</title>
     <link rel="stylesheet" href="./css/menu.css">
 </head>
-<body>
-    
-     <header id="conteiner_cabecalho">
 
-      <div id="imagem_cabecalho">
-        <img src="./assets/imagens/Logo.svg" alt="">
-      </div>
-      <div id="Conteiner_informações">
-        <h6><a href="./menu.html">Menu</a></h6>
-         <h6><a href="./telahome.html">Quiz</a></h6>
-         <h6 ><a href="../dashboard/dashboard.html">Dashboard</a></h6>
-      </div>
-      <div>
-        <button id="botao_sair"><a href="./index.html">Sair</a></button>
-      </div>
+<body onload="listarCards()">
+
+    <header id="conteiner_cabecalho">
+
+        <div id="imagem_cabecalho">
+            <img src="./assets/imagens/Logo.svg" alt="">
+        </div>
+        <div id="Conteiner_informações">
+            <h6><a href="./menu.html">Menu</a></h6>
+            <h6><a href="./telahome.html">Quiz</a></h6>
+            <h6><a href="../dashboard/dashboard.html">Dashboard</a></h6>
+        </div>
+        <div>
+            <button id="botao_sair"><a href="./index.html">Sair</a></button>
+        </div>
     </header>
 
     <section id="conteiner_menu">
@@ -30,30 +32,30 @@
             <div>
                 <img src="./assets/imagens/icone_nota.avif" alt="">
             </div>
-            
+
             <div id="titulo_menu">
                 <h2>Diário de Memórias Musicais</h2>
                 <p>Músicas que marcaram sua jornada emocional</p>
-        </div>
-                
-        
-        
-        <div>
-            <button onclick="criar()" id="botao_memoria">+ Nova memória</button>
-        </div>
-        
-        <div id="conteiner_card">
-                
+            </div>
+
+
+
+            <div>
+                <button onclick="criar()" id="botao_memoria">+ Nova memória</button>
+            </div>
+
+            <div id="conteiner_card">
+
                 <div id="conteiner_informacoes_card">
-                    <h4>Moth to a flame</h4> 
+                    <h4>Moth to a flame</h4>
                     <h6>The wekend</h6>
                 </div>
                 <div id="descricao_card">
                     Assistindo Maxton Hall
                 </div>
-                
+
                 <div id="conteiner_ano">
-                    
+
                     <div id="conteiner_sentimento">
                         Nostalgia
                     </div>
@@ -61,9 +63,9 @@
                         2025
                     </div>
                 </div>
-        </div>
-            
-        </section >
+            </div>
+
+    </section>
 
 
 
@@ -71,47 +73,47 @@
 
     <div id="criar_card">
         <div id="novo_card">
-            <img src="../public/assets/imagens/card_nota.avif" alt="">
-            <h4>Nova  Memória Musical</h4>
+            <img src="../assets/imagens/card_nota.avif" alt="">
+            <h4>Nova Memória Musical</h4>
             <div id="sair_criar">
-                <a href="./menu.html"><img src="./assets/imagens/icone-x.png" alt=""></a>            
+                <a href="./menu.html"><img src="./assets/imagens/icone-x.png" alt=""></a>
             </div>
         </div>
         <div id="informacoes_card">
-            
+
             <p>Nome da Música</p>
-            
-            <input type="text" placeholder=" Ex: The Hills">
-            
+
+            <input id="nomeMusica" type="text" placeholder=" Ex: The Hills">
+
             <p>Artista</p>
-            
-            <input type="text" placeholder=" Ex: The Wekend">
-            
+
+            <input id="cantor" type="text" placeholder=" Ex: The Wekend">
+
             <p>Memória</p>
-            
-            <input type="text" placeholder=" Descreva a memória especial">
-            
+
+            <input id="descricao" type="text" placeholder=" Descreva a memória especial">
+
             <p>Emoção</p>
             <select name="" id="sel_emocao">
-                <option value="">Selecione</option>
-                <option value="">Paz</option>
-                <option value="">Amor</option>
-                <option value="">Alegria</option>
-                <option value="">Energia</option>
-                <option value="">Esperança</option>
-                <option value="">Nostalgia</option>
+                <option value="Selecione">Selecione</option>
+                <option value="Paz">Paz</option>
+                <option value="Amor">Amor</option>
+                <option value="Alegria">Alegria</option>
+                <option value="Energia">Energia</option>
+                <option value="Esperança">Esperança</option>
+                <option value="Nostalgia">Nostalgia</option>
             </select>
-            
+
             <p>Ano</p>
-            <input type="Number" placeholder=" Ex: 2026">
-            
+            <input id="anoCard" type="Number" placeholder=" Ex: 2026">
+
         </div>
 
         <div id="botoes_card">
 
             <button onclick="cancelar()" id="botao_cancelar">Cancelar</button>
-            <button id="botao_salvar">Salvar</button>
-            
+            <button id="botao_salvar" onclick="publicar()">Salvar</button>
+
         </div>
 
     </div>
@@ -119,22 +121,255 @@
 
 
 </body>
+
 </html>
 <script>
 
-    function criar(){
+    function criar() {
 
         criar_card.style.display = "block"
 
 
     }
 
-    function cancelar(){
+    function cancelar() {
 
         criar_card.style.display = "none"
 
 
     }
+
+    function limparFormulario() {
+        nomeMusica.value = "";
+        cantor.value = "";
+        descricao.value = "";
+        sel_emocao.value = "Selecione";
+        anoCard.value = "";
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            nomeMusica: nomeMusica.value,
+            cantor: cantor.value,
+            descricao: descricao.value,
+            tipoSentimento: sel_emocao.value,
+            anoCard: anoCard.value
+        }
+
+        fetch(`/avisos/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+
+                nomeMusica: corpo.nomeMusica,
+                cantor: corpo.cantor,
+                descricao: corpo.descricao,
+                tipoSentimento: corpo.tipoSentimento,
+                anoCard: corpo.anoCard
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                limparFormulario();
+                listarCards()
+                // finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function listarCards() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+
+        fetch(`/avisos/listar/${idUsuario}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json"
+            }
+
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                resposta.json().then(function (respostaConvertida) {
+
+                    let  listaCards = "";
+ 
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        listaCards +=
+                            `<div id="conteiner_card">
+                            
+                            <div id="conteiner_informacoes_card">
+                                <h4>${respota[i].MÚSICA}</h4>
+                                <h6>${resposta[i].ARTISTA}</h6>
+                                </div>
+                                <div id="descricao_card">
+                                    ${resposta[i].DESCRIÇÃO}
+                                    </div>
+                                    
+                                    <div id="conteiner_ano">
+                                        
+                                        <div id="conteiner_sentimento">
+                                            ${resposta[i].SENTIMENTO}
+                                            </div>
+                                            <div id="ano">
+                                                ${resposta[i].ANO}
+                                                </div>
+                                                </div>
+                                                </div>`
+
+                    }
+
+                   
+
+                        conteiner_card.innerHTML = listaCards
+
+                    
+                })
+
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+
+
+
+
+    }
+
+    // function editar(idAviso) {
+    //     sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+    //     console.log("cliquei em editar - " + idAviso);
+    //     window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+    //     window.location = "/dashboard/edicao-aviso.html"
+
+    // }
+
+    // function deletar(idAviso) {
+    //     console.log("Criar função de apagar post escolhido - ID" + idAviso);
+    //     fetch(`/avisos/deletar/${idAviso}`, {
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     }).then(function (resposta) {
+
+    //         if (resposta.ok) {
+    //             window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+    //             window.location = "/dashboard/mural.html"
+    //         } else if (resposta.status == 404) {
+    //             window.alert("Deu 404!");
+    //         } else {
+    //             throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    //         }
+    //     }).catch(function (resposta) {
+    //         console.log(`#ERRO: ${resposta}`);
+    //     });
+    // }
+
+    // function atualizarFeed() {
+    //     fetch("/avisos/listar").then(function (resposta) {
+    //         if (resposta.ok) {
+    //             if (resposta.status == 204) {
+    //                 var feed = document.getElementById("feed_container");
+    //                 var mensagem = document.createElement("span");
+    //                 mensagem.innerHTML = "Nenhum resultado encontrado."
+    //                 feed.appendChild(mensagem);
+    //                 throw "Nenhum resultado encontrado!!";
+    //             }
+
+    //             resposta.json().then(function (resposta) {
+    //                 console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+    //                 var feed = document.getElementById("feed_container");
+    //                 feed.innerHTML = "";
+    //                 for (let i = 0; i < resposta.length; i++) {
+    //                     var publicacao = resposta[i];
+
+    //                     // criando e manipulando elementos do HTML via JavaScript
+    //                     var divPublicacao = document.createElement("div");
+    //                     var spanID = document.createElement("span");
+    //                     var spanTitulo = document.createElement("span");
+    //                     var spanNome = document.createElement("span");
+    //                     var divDescricao = document.createElement("div");
+    //                     var divButtons = document.createElement("div");
+    //                     var btnEditar = document.createElement("button");
+    //                     var btnDeletar = document.createElement("button");
+
+
+    //                     spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+    //                     spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+    //                     spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+    //                     divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+    //                     btnEditar.innerHTML = "Editar";
+    //                     btnDeletar.innerHTML = "Deletar";
+
+    //                     divPublicacao.className = "publicacao";
+    //                     spanTitulo.id = "inputNumero" + publicacao.idAviso;
+    //                     spanNome.className = "publicacao-nome";
+    //                     spanTitulo.className = "publicacao-titulo";
+    //                     divDescricao.className = "publicacao-descricao";
+
+    //                     divButtons.className = "div-buttons"
+
+    //                     btnEditar.className = "publicacao-btn-editar"
+    //                     btnEditar.id = "btnEditar" + publicacao.idAviso;
+    //                     btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+    //                     btnDeletar.className = "publicacao-btn-editar"
+    //                     btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+    //                     btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+    //                     divPublicacao.appendChild(spanID);
+    //                     divPublicacao.appendChild(spanNome);
+    //                     divPublicacao.appendChild(spanTitulo);
+    //                     divPublicacao.appendChild(divDescricao);
+    //                     divPublicacao.appendChild(divButtons);
+    //                     divButtons.appendChild(btnEditar);
+    //                     divButtons.appendChild(btnDeletar);
+    //                     feed.appendChild(divPublicacao);
+    //                 }
+
+    //                 finalizarAguardar();
+    //             });
+    //         } else {
+    //             throw ('Houve um erro na API!');
+    //         }
+    //     }).catch(function (resposta) {
+    //         console.error(resposta);
+    //         finalizarAguardar();
+    //     });
+    // }
 
 
 </script>

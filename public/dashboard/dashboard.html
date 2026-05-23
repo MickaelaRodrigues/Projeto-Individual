@@ -22,19 +22,19 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body onload="obterDadosGrafico(),validarSessao()">
-         <header id="conteiner_cabecalho">
+    <header id="conteiner_cabecalho">
 
-      <div id="imagem_cabecalho">
-        <img src="./assets/imagens/Logo.svg" alt="">
-      </div>
-      <div id="Conteiner_informações">
-        <h6><a href="../menu.html">Menu</a></h6>
-         <h6><a href="./telahome.html">Quiz</a></h6>
-         <h6 ><a href="../dashboard/dashboard.html">Dashboard</a></h6>
-      </div>
-      <div>
-        <button id="botao_sair"><a href="./index.html">Sair</a></button>
-      </div>
+        <div id="imagem_cabecalho">
+            <img src="../assets/imagens/Logo.svg" alt="">
+        </div>
+        <div id="Conteiner_informações">
+            <h6><a href="../menu.html">Menu</a></h6>
+            <h6><a href="../telahome.html">Quiz</a></h6>
+            <h6><a href="../dashboard.html">Dashboard</a></h6>
+        </div>
+        <div>
+            <button id="botao_sair"><a href="./index.html">Sair</a></button>
+        </div>
     </header>
 
     <section id="Dashboard">
@@ -99,7 +99,7 @@
                 <p>Baseado nas suas respostas</p>
             </div>
 
-            
+
         </div>
 
         <div id="conteiner_graficos">
@@ -112,7 +112,7 @@
 
             </div>
 
-   
+
 
 
         </div>
@@ -148,27 +148,27 @@
 
                     plotarGrafico(resposta);
 
-                    if(resposta.length>0){
+                    if (resposta.length > 0) {
                         let maiorvalor = 0
                         let genero = ``
-                        for(let i = 0;i<resposta.length;i++){
-                        if(maiorvalor<resposta[i].vezes){
+                        for (let i = 0; i < resposta.length; i++) {
+                            if (maiorvalor < resposta[i].vezes) {
 
-                            maiorvalor = resposta[i].vezes;
-                            genero = resposta[i].nome
+                                maiorvalor = resposta[i].vezes;
+                                genero = resposta[i].nome
+                            }
+
                         }
-                        
+                        titulo_estilo.innerHTML = genero;
+                        if (genero == `MPB`) { titulo_grupo.innerHTML = `Intimista`; titulo_foco.innerHTML = `Poesia` }
+                        else if (genero == `Pop`) { titulo_grupo.innerHTML = `Energia`; titulo_foco.innerHTML = `Refrão chiclete` }
+                        else if (genero == `Funk`) { titulo_grupo.innerHTML = `Agitação`; titulo_foco.innerHTML = `Batida` }
+                        else if (genero == `Trap`) { titulo_grupo.innerHTML = `Marra`; titulo_foco.innerHTML = `Flow` }
+                        else if (genero == `Samba`) { titulo_grupo.innerHTML = `Alegria`; titulo_foco.innerHTML = `Batucada` }
+                        else if (genero == `Gospel`) { titulo_grupo.innerHTML = `Espiritualidade`; titulo_foco.innerHTML = `Sentimento` }
+                        else if (genero == `Raggae`) { titulo_grupo.innerHTML = `Paz e amor`; titulo_foco.innerHTML = `Repetição` }
+                        else if (genero == `Sertanejo`) { titulo_grupo.innerHTML = `Sofrência`; titulo_foco.innerHTML = `Instrumentos` }
                     }
-                    titulo_estilo.innerHTML = genero;
-                    if(genero == `MPB`){ titulo_grupo.innerHTML  = `Intimista`; titulo_foco.innerHTML = `Poesia`}
-                    else if(genero == `Pop`){ titulo_grupo.innerHTML  = `Energia`;  titulo_foco.innerHTML = `Refrão chiclete`}
-                    else if(genero == `Funk`){ titulo_grupo.innerHTML  = `Agitação`;  titulo_foco.innerHTML = `Batida`}
-                    else if(genero == `Trap`){ titulo_grupo.innerHTML  = `Marra`;  titulo_foco.innerHTML = `Flow`}
-                    else if(genero == `Samba`){ titulo_grupo.innerHTML  = `Alegria`;  titulo_foco.innerHTML = `Batucada`}
-                    else if(genero == `Gospel`){ titulo_grupo.innerHTML  = `Espiritualidade`; titulo_foco.innerHTML = `Sentimento`}
-                    else if(genero == `Raggae`){ titulo_grupo.innerHTML  = `Paz e amor`;  titulo_foco.innerHTML = `Repetição`}
-                    else if(genero == `Sertanejo`){ titulo_grupo.innerHTML  = `Sofrência`;  titulo_foco.innerHTML = `Instrumentos`}
-                }
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -191,42 +191,42 @@
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
-            
-                labels: labels,
-                datasets: [{
-                    label: 'Generos Favoritos',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)'
-                    ],
-                    borderWidth: 1
-                }]
-            };
+
+            labels: labels,
+            datasets: [{
+                label: 'Generos Favoritos',
+                data: [],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        // Inserindo valores recebidos e alterando os para virarem porcentagem
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.nome);
-            dados.datasets[0].data.push(registro.vezes);
+            dados.datasets[0].data.push((registro.vezes / 12 * 100).toFixed(1));
         }
 
         console.log('----------------------------------------------')
@@ -237,7 +237,7 @@
         console.log(dados.datasets)
         console.log('----------------------------------------------')
 
-        // Criando estrutura para plotar gráfico - config
+        // Criando estrutura para plotar gráfico  de barra
         const config = {
             type: 'bar',
             data: dados,
@@ -306,7 +306,7 @@
 
     // }
 
-    
 
-    
+
+
 </script>

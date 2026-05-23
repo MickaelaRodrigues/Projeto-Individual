@@ -33,7 +33,7 @@
             <input id="email_input" type="text" placeholder="Email"><br><br>
             <input id="senha_input" type="text" placeholder="Senha"><br><br>
 
-            <div id="mensagem_erro"></div>
+            <div id="mensagem_erro"></div><br>
 
             <button id="loginButton" onclick="entrar()"><b>Login</button><br>
 
@@ -63,10 +63,14 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Preencha os campos de email e senha";
             loginButton.disabled = false
 
 
+        } else if(!emailVar.includes(`@`)){
+
+            mensagem_erro.innerHTML = "O campo email deve conter '@'";
+            loginButton.disabled = false
         }
         else {
 

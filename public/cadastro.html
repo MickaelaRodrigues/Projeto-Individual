@@ -61,18 +61,15 @@
 
     cadastroButton.disabled = true
     
-
     var nomeVar = nome_input.value
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confSenhaVar = confSenha_input.value;
 
-
     if (nomeVar.trim() == "" || emailVar.trim() == "" || senhaVar.trim() == "" || confSenhaVar.trim() == "") {
 
-      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      mensagem_erro.innerHTML = "Por favor, preencha todos os campos";
       cadastroButton.disabled = false
-
 
     } else if (senhaVar.trim() != confSenhaVar.trim()) {
 
@@ -84,12 +81,10 @@
       mensagem_erro = `O email deve conter "@" ou "."`
       cadastroButton.disabled = false
 
-
     } else if (nomeVar.lenght < 3) {
 
       mensagem_erro = `Nome inválido, o nome deve ter no minimo 3 caracteres`
       cadastroButton.disabled = false
-
 
     } else if (senhaVar.lenght < 6) {
 
