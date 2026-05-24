@@ -1,8 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-
+    
 }
+
+body{
+    overflow-x: hidden;
+}
+
 
 #conteiner_cabecalho {
 
@@ -137,6 +142,15 @@
     height: 20dvh;
     margin-top: 15px;
     border-radius: 15px;
+    border: solid rgb(185, 104, 197) 2px;
+}
+
+#conteiner_card:hover{
+
+    transition: 300ms;
+    box-shadow: 0px 4px 10px black;
+    transform: translateY(5px) rotate(3deg);
+
 }
 
 #conteiner_informacoes_card {
@@ -319,5 +333,60 @@
     width: 2dvw;
 
 
+
+}
+
+#conteiner_cards{
+    
+    margin-top: 15px;
+    width: 80dvw;
+    height: 10dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    flex-wrap: wrap;
+    gap: 5dvw;
+
+
+}
+
+#conteiner_informacoes_card{
+    width: 30dvw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#conteiner_titulosCard{
+    
+    width: 50dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+#conteiner_excluirCard{
+
+    width: 15dvw;
+    height: 10dvh;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 14dvw;
+}
+
+
+
+    #botao_excluirCard{
+
+        width: 100%;
+        height: 4dvh;
+        font-size: 10px;
+        border-radius: 10px;
+        color: whitesmoke;
+        background-color: #b417f8;
+       
 
 }
