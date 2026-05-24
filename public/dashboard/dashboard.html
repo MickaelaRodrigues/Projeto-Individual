@@ -18,8 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-
-<!-- <body onload=" atualizarFeed()"> -->
+<!-- Funções que são chamadas pós o carregamento da página -->
 
 <body onload="obterDadosGrafico(),validarSessao()">
     <header id="conteiner_cabecalho">
@@ -30,10 +29,10 @@
         <div id="Conteiner_informações">
             <h6><a href="../menu.html">Menu</a></h6>
             <h6><a href="../telahome.html">Quiz</a></h6>
-            <h6><a href="../dashboard.html">Dashboard</a></h6>
+            <h6><a href="../dashboard/dashboard.html">Dashboard</a></h6>
         </div>
         <div>
-            <button id="botao_sair"><a href="./index.html">Sair</a></button>
+            <button id="botao_sair"><a href="../index.html">Sair</a></button>
         </div>
     </header>
 
@@ -137,18 +136,30 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
+
     function obterDadosGrafico() {
 
         let fk_usuario = sessionStorage.ID_USUARIO
 
+        // fetch é o método que requisita o endpoint para consguir obter/enviar os dados necessários.
+        // o fetch retorna uma promisse, o primeiro (.then) para resolver essa promisse,assim temos o status da requisição
         fetch(`/quiz/obterDados/${fk_usuario}`, { cache: 'no-store' }).then(function (response) {
+            //O resposta.ok verifica se a resposta esta sendo adquirida, ou seja, status está sendo atendido
             if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    plotarGrafico(resposta);
+                // o erro 204 é quando não tem informações armazenadas ou seja a resposta da requisição vem sem conteúdo
+                if (response.status == 204) {
+
+                    alert(`Você deve responder o quiz uma vez antes de ir para a dashboard!`)
+                    window.location.href = '../menu.html'
+                }
+
+                response.json().then(function (resposta) {
 
                     if (resposta.length > 0) {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        plotarGrafico(resposta);
                         let maiorvalor = 0
                         let genero = ``
                         for (let i = 0; i < resposta.length; i++) {
@@ -168,7 +179,9 @@
                         else if (genero == `Gospel`) { titulo_grupo.innerHTML = `Espiritualidade`; titulo_foco.innerHTML = `Sentimento` }
                         else if (genero == `Raggae`) { titulo_grupo.innerHTML = `Paz e amor`; titulo_foco.innerHTML = `Repetição` }
                         else if (genero == `Sertanejo`) { titulo_grupo.innerHTML = `Sofrência`; titulo_foco.innerHTML = `Instrumentos` }
+
                     }
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -182,6 +195,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
     function plotarGrafico(resposta) {
 
         console.log('iniciando plotagem do gráfico...');
@@ -248,64 +262,72 @@
             document.getElementById(`grafico_barra`),
             config
         );
+
+        atualizarGrafico(dados, myChart)
+
     }
 
-    //      function atualizarGrafico(idAquario, dados, myChart) {
+    function atualizarGrafico(dados, myChart) {
+
+        let idUsuario = sessionStorage.ID_USUARIO
+
+        // chamando o endpoint criado para realizaaar a atualização do gráfico
+        fetch(`/quiz/obterDados/tempoReal/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    console.log(`Novos dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+                    // Limpamos o gráfico atual para reconstruir com os dados atualizados
+                    dados.labels = [];
+                    dados.datasets[0].data = [];
+
+                    // Laço de repetição juntamente a um cálculo matematico de porcentagem
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        var registro = novoRegistro[i];
+                        dados.labels.push(registro.nome);
+                        dados.datasets[0].data.push((registro.vezes / 12 * 100).toFixed(1));
+                    }
+
+                    myChart.update();
+
+                    // atualização das KPI's
+                    let maiorvalor = 0
+                    let genero = ``
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        if (maiorvalor < novoRegistro[i].vezes) {
+
+                            maiorvalor = novoRegistro[i].vezes;
+                            genero = novoRegistro[i].nome
+                        }
+
+                    }
+                    titulo_estilo.innerHTML = genero;
+                    if (genero == `MPB`) { titulo_grupo.innerHTML = `Intimista`; titulo_foco.innerHTML = `Poesia` }
+                    else if (genero == `Pop`) { titulo_grupo.innerHTML = `Energia`; titulo_foco.innerHTML = `Refrão chiclete` }
+                    else if (genero == `Funk`) { titulo_grupo.innerHTML = `Agitação`; titulo_foco.innerHTML = `Batida` }
+                    else if (genero == `Trap`) { titulo_grupo.innerHTML = `Marra`; titulo_foco.innerHTML = `Flow` }
+                    else if (genero == `Samba`) { titulo_grupo.innerHTML = `Alegria`; titulo_foco.innerHTML = `Batucada` }
+                    else if (genero == `Gospel`) { titulo_grupo.innerHTML = `Espiritualidade`; titulo_foco.innerHTML = `Sentimento` }
+                    else if (genero == `Raggae`) { titulo_grupo.innerHTML = `Paz e amor`; titulo_foco.innerHTML = `Repetição` }
+                    else if (genero == `Sertanejo`) { titulo_grupo.innerHTML = `Sofrência`; titulo_foco.innerHTML = `Instrumentos` }
 
 
+                    // setTimeout se chama a cada 2 segundos
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico( dados, myChart), 2000);
+                });
+            } else {
 
-    //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (novoRegistro) {
-
-    //                 obterdados(idAquario);
-    //                 // alertar(novoRegistro, idAquario);
-    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-    //                 console.log(`Dados atuais do gráfico:`);
-    //                 console.log(dados);
-
-    //                 let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-    //                 avisoCaptura.innerHTML = ""
+                console.error('Nenhum dado novo encontrado ou erro na API');
+                proximaAtualizacao = setTimeout(() => atualizarGrafico( dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na atualização do gráfico: ${error.message}`);
+            });
+    }
 
 
-    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-    //                     console.log("---------------------------------------------------------------")
-    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-    //                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-    //                     console.log("Horário do novo dado capturado:")
-    //                     console.log(novoRegistro[0].momento_grafico)
-    //                     console.log("Horário do último dado capturado:")
-    //                     console.log(dados.labels[dados.labels.length - 1])
-    //                     console.log("---------------------------------------------------------------")
-    //                 } else {
-    //                     // tirando e colocando valores no gráfico
-    //                     dados.labels.shift(); // apagar o primeiro
-    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-    //                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-    //                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-    //                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-    //                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-    //                     myChart.update();
-    //                 }
-
-    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-
-    // }
-
+</script>
 
 
 

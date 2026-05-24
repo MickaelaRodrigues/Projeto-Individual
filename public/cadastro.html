@@ -58,31 +58,33 @@
 
 
   function cadastrar() {
-
+    // Para evitar que o usuario consiga se cadastrar 2 vezes, desabilitamos o botão quando 
+    // entramos na função e ele só é habilitado quando o usuário erra alguma validação
     cadastroButton.disabled = true
-    
+    // criação de variaveis 
     var nomeVar = nome_input.value
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confSenhaVar = confSenha_input.value;
 
+    // Validações necessárias
     if (nomeVar.trim() == "" || emailVar.trim() == "" || senhaVar.trim() == "" || confSenhaVar.trim() == "") {
-
+      mensagem_erro.style.color = "red"
       mensagem_erro.innerHTML = "Por favor, preencha todos os campos";
       cadastroButton.disabled = false
 
     } else if (senhaVar.trim() != confSenhaVar.trim()) {
-
+      mensagem_erro.style.color = "red"
       mensagem_erro.innerHTML = `Senhas diferentes, verifique se as senhas são iguais`
       cadastroButton.disabled = false
 
     } else if (!emailVar.includes(`@`) || !emailVar.includes(`.`)) {
-
+      mensagem_erro.style.color = "red"
       mensagem_erro = `O email deve conter "@" ou "."`
       cadastroButton.disabled = false
 
     } else if (nomeVar.lenght < 3) {
-
+      mensagem_erro.style.color = "red";
       mensagem_erro = `Nome inválido, o nome deve ter no minimo 3 caracteres`
       cadastroButton.disabled = false
 
@@ -101,8 +103,7 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
+          
           nomeServer: nomeVar,
           emailServer: emailVar,
           senhaServer: senhaVar
@@ -118,6 +119,7 @@
               "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
             setTimeout(() => {
+              // redirecionamento para o login
               window.location = "login.html";
             }, "2000");
 

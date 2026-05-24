@@ -15,5 +15,9 @@ router.get("/obterDados/:fk_usuario", function (req, res) {
     quizController.obterDados(req, res);
 });
 
+router.get("/obterDados/tempoReal/:fk_usuario", function (req, res) {
+    quizController.obterDadosTempoReal(req, res);
+});
+
 
 module.exports = router;

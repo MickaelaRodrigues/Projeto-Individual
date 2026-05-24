@@ -58,17 +58,19 @@
 
         loginButton.disabled = true
 
-
+        // Criação de variaveis para armazenar od dados de login
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
+        // validação para quando os todos campos não estiverem preenchidos não seguir adiante
         if (emailVar == "" || senhaVar == "") {
+            mensagem_erro.style.color = "red"
             mensagem_erro.innerHTML = "Preencha os campos de email e senha";
             loginButton.disabled = false
 
 
         } else if(!emailVar.includes(`@`)){
-
+            mensagem_erro.style.color = "red"
             mensagem_erro.innerHTML = "O campo email deve conter '@'";
             loginButton.disabled = false
         }
@@ -76,7 +78,7 @@
 
             console.log("FORM LOGIN: ", emailVar);
             console.log("FORM SENHA: ", senhaVar);
-
+            
             fetch("usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -98,9 +100,11 @@
                         sessionStorage.EMAIL_USUARIO = json.email;
                         sessionStorage.NOME_USUARIO = json.nome;
                         sessionStorage.ID_USUARIO = json.id;
-
+                        mensagem_erro.style.color = "green";
+                        mensagem_erro.innerHTML = "Te redirecionando para a tela principal"
 
                         setTimeout(function () {
+
                             window.location = "./menu.html";
                         }, 1000);
 

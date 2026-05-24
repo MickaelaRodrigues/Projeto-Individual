@@ -17,11 +17,12 @@
             <img src="./assets/imagens/Logo.svg" alt="">
         </div>
         <div id="Conteiner_informações">
-            <h6><a href="./telahome.html">Quiz</a></h6>
+            <h6><a href="../menu.html">Menu</a></h6>
+            <h6><a href="../telahome.html">Quiz</a></h6>
             <h6><a href="../dashboard/dashboard.html">Dashboard</a></h6>
         </div>
-        <div id="botao_saida">
-            <h6><a id="botao_sair_quiz" href="./index.html">Sair</a></h6>
+        <div>
+            <button id="botao_sair"><a href="../index.html">Sair</a></button>
         </div>
     </header>
 
@@ -163,7 +164,7 @@
 
     let bloco_caracteristica = [];
 
-    // Iniciando função para pegar os dados de Json de Objetos
+    // Iniciando função para pegar os dados do Json de Objetos
 
     function pegar_perguntas() {
 
@@ -227,7 +228,7 @@
 
         pergunta_atual += 1;
 
-    // Fetch que é utilizado através da rota criada quiz/salvar
+    // Fetch que é utilizado através da rota criada quiz/salvar realizando uma requisição para salvar
 
         fetch("/quiz/salvar", {
             // Método para inserir as alternativas escolhidas utilizando o Id do usuário
@@ -248,12 +249,12 @@
 
                 if (resposta.ok) {
 
-                    //Se o Json jpá tiver sido percorrido, direcionara para dashboard
+                    //Se o Json já tiver sido percorrido, direcionará para dashboard
                     if (pergunta_atual > jsonPerguntas.length) {
                         
                         setTimeout(() => {
                             window.location = "dashboard/dashboard.html";
-                        }, "2000");
+                        }, "300");
                         
                         
                     } else {

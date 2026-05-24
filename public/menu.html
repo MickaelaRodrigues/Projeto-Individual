@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card</title>
     <link rel="stylesheet" href="./css/menu.css">
+    <script src="./js/sessao.js"></script>
 </head>
 
-<body onload="listarCards()">
+<!-- Funções que são chamadas pós o carregamento da página -->
+
+<body onload="listarCards(), validarSessao()">
 
     <header id="conteiner_cabecalho">
 
@@ -110,14 +113,14 @@
 
     let listaCards = "";
 
-
+    // função para  o conteúdo de criação dos cards fique ativo
     function criar() {
 
         criar_card.style.display = "block"
 
 
     }
-
+    // função para quando o botao cancelar for clicado o conteúdo de criação suma
     function cancelar() {
 
         criar_card.style.display = "none"
@@ -125,6 +128,7 @@
 
     }
 
+    // função para limpar campos após a inserção dos conteúdos dos cards
     function limparFormulario() {
         nomeMusica.value = "";
         cantor.value = "";
@@ -133,7 +137,10 @@
         anoCard.value = "";
     }
 
+    // função para  publicação do card
     function publicar() {
+
+        // Pegamos o id do usuário no storage
         var idUsuario = sessionStorage.ID_USUARIO;
 
         var corpo = {
@@ -144,6 +151,7 @@
             anoCard: anoCard.value
         }
 
+        // fazemos a requisição de onde queremos publicar através do endpoint criado e inserimos conforme o id do usário
         fetch(`/avisos/publicar/${idUsuario}`, {
             method: "post",
             headers: {
@@ -161,7 +169,8 @@
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
-
+            // Aós validar se a resposta está vindo de froma correta, realizamos o post do card, 
+            // limpamos os campos e chamamos a função responsável pela listagem dos cards pra visualizar os cards cadatrados
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
                 limparFormulario();
@@ -181,13 +190,15 @@
 
     }
 
+
+    // função responsável pela visualização dos cards
     function listarCards() {
 
         var idUsuario = sessionStorage.ID_USUARIO;
         listaCards = "";
 
 
-
+        // Requisição no endpoint feito para listagem, dessa forma conseguimos fazer a requisição de todos
         fetch(`/avisos/listar/${idUsuario}`, {
             method: "get",
             headers: {
@@ -208,7 +219,7 @@
                 resposta.json().then(function (respostaConvertida) {
 
 
-
+                    // criação do laço de repetição para cada card ser construído através de json
                     for (let i = 0; i < respostaConvertida.length; i++) {
 
                         listaCards +=
@@ -243,7 +254,7 @@
                     }
 
 
-
+                    // conteiner onde os cards estão sendo guardados após serem salvos
                     conteiner_cards.innerHTML = listaCards
                     console.log(listaCards);
 
@@ -269,12 +280,14 @@
     }
 
 
-
+    // função responsável por deletar os cards
     function deletar(idMusica) {
 
         var idUsuario = sessionStorage.ID_USUARIO;
 
         console.log("Criar função de apagar post escolhido - ID" + idUsuario);
+
+        // Realizamos a requisição no edpoint criado para deletar os cards
         fetch(`/avisos/deletar/${idUsuario}/${idMusica}`, {
             method: "DELETE",
             headers: {

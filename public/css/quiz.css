@@ -92,7 +92,7 @@
 
 }
 
-#botao_saida{
+#botao_sair{
 
     background-color: aqua;
     width: 4dvw;
@@ -108,6 +108,11 @@
     
     text-decoration: none;
     padding: 15px;
+}
+
+#botao_sair a{
+
+    padding: 2dvh;
 }
 
 #Conteiner_informações a{
