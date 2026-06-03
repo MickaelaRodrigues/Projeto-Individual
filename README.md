@@ -12,6 +12,8 @@ Página Home: Conteúdo informativo composto de benefícios da musica para o bem
 
 Cadastro/Login: Sistema de cadastro e login de usuários.
 
+Menu Principal: Inclusão de cards com nome da música/artista que marcou uma memória importante.
+
 Quiz Interativo: Questionário personalizado para autodescoberta sobre o gênero musical preferido.
 
 Dashboard: Painel de Kpis mostrando os dados com base nas respostas escolhidas pelo usuário.
