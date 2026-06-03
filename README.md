@@ -2,7 +2,8 @@
 Projeto individual Full Stack: HTML5, CSS3, JavaScript, Node.js, MySQL e Chart.js. Focado em visualização gráfica de dados.
 
 SoundMind
-Transformand ritmos em autodescoberta e bem-estar mental.
+
+Transformando ritmos em autodescoberta e bem-estar mental.
 
 A SoundMind é uma plataforma interativa que une tecnologia e musica. O projeto veio com o intuito de conscientizar as pessoas sobre como seus hábitos de escuta e estilos musicais que impactam diretamente suas emoções.
 
